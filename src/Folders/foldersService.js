@@ -12,7 +12,6 @@ const FoldersService = {
       });
   },
   getById(knex, id) {
-    console.log('getbyid');
     return knex
       .from('noteful_folders')
       .select('*')

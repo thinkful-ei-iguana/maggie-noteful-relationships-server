@@ -30,7 +30,6 @@ describe('Folder endpoints', function () {
 
     context.only(`Given there are folders in the database`, () => {
       const testFolders = makeFoldersArray();
-      console.log('db is', db)
       beforeEach('insert folders', () => {
         return db
           .into('noteful_folders')
@@ -277,9 +276,7 @@ describe('Folder endpoints', function () {
           ...testFolders[idToUpdate - 1],
           ...updateFolder
         }
-        console.log('expectedFolder:', expectedFolder);
 
-        console.log('idtoupdate:', idToUpdate);
         return supertest(app)
           .patch(`/api/folders/${idToUpdate}`)
           .send({

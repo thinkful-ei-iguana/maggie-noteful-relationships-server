@@ -34,7 +34,6 @@ describe.only('Note endpoints', function () {
           .into('noteful_notes')
           .insert(testNotes);
       });
-      console.log('here is', db);
 
       it(`responds with 200 and all of the notes`, () => {
         return supertest(app)
