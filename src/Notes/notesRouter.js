@@ -26,7 +26,6 @@ notesRouter
   .post(jsonParser, (req, res, next) => {
     const { note_name, content } = req.body;
     const newNote = { note_name, content };
-    console.log('newnote is', newNote);
     for (const [key, value] of Object.entries(newNote))
       if (value === null)
         return res.status(400).json({
@@ -65,7 +64,6 @@ notesRouter
   })
   .get((req, res, next) => {
     res.json(serializeNote(res.note));
-    console.log('req.body here is', req.body);
   })
   .delete((req, res, next) => {
     NotesService.deleteNote(
