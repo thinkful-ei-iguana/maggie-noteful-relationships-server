@@ -27,11 +27,13 @@ notesRouter
   .post(jsonParser, (req, res, next) => {
     const { note_name, content, folder_id } = req.body;
     const newNote = { note_name, content, folder_id };
-    for (const [key, value] of Object.entries(newNote))
-      if (value === null)
+    for (const [key, value] of Object.entries(newNote)) {
+      if (value === null) {
         return res.status(400).json({
           error: { message: `missing '${key}' in request body` }
         });
+      }
+    }
     NotesService.insertNote(
       req.app.get('db'),
       newNote
@@ -42,7 +44,10 @@ notesRouter
           .location(path.posix.join(req.originalUrl, `/${note.id}`))
           .json(serializeNote(note));
       })
-      .catch(next);
+      .catch((err) => {
+        console.error('insert note error:', err);
+        next(err);
+      });
   });
 
 notesRouter
