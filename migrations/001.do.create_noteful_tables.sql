@@ -12,5 +12,5 @@ CREATE TABLE noteful_notes (
     note_name TEXT NOT NULL,
     content TEXT NOT NULL,
     date_modified DATE,
-    folder_id INTEGER REFERENCES noteful_folders(id)
+    folder_id INTEGER REFERENCES noteful_folders(id) ON DELETE CASCADE
 );
