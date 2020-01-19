@@ -79,7 +79,10 @@ notesRouter
       .then(numRowsAffected => {
         res.status(204).end();
       })
-      .catch(next);
+      .catch((err) => {
+        console.error('delete note error:', err);
+        next(err);
+      });
   })
   .patch(jsonParser, (req, res, next) => {
     const { note_name, content, date_modified } = req.body;
